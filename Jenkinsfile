@@ -9,22 +9,25 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
+                script {
                 // Install Python dependencies
-                sh '''
-                . ${VENV_DIR}/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
+                    sh '''
+                    . ${VENV_DIR}/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                    '''
+                }
             }
         }
-
         stage('Run Tests') {
             steps {
+                script {
                 // Run tests
-                sh '''
-                . ${VENV_DIR}/bin/activate
-                pytest --maxfail=1 --disable-warnings -q
-                '''
+                    sh '''
+                    . ${VENV_DIR}/bin/activate
+                    pytest --maxfail=1 --disable-warnings -q
+                    '''
+                }
             }
         }
          stage('Sonar-Test') {
