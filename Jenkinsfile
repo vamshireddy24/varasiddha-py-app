@@ -4,7 +4,7 @@ pipeline {
         stage('checkout') {
             steps {
                 sh 'echo passed'
-                 git branch: 'main', url: "https://github.com/vamshireddy24/varasiddhi-python.git"
+                 git branch: 'main', url: "https://github.com/vamshireddy24/varasiddha-py-app.git"
             }
         }
         stage('Install Dependencies') {
