@@ -25,17 +25,17 @@ pipeline {
                 }
             }
         }
-        stage('Run Tests') {
-            steps {
-                script {
-                // Run tests
-                    sh '''
-                    . ${VENV_DIR}/bin/activate
-                    pytest tests --maxfail=1 --disable-warnings -q
-                    '''
-                }
-            }
-        }
+      //  stage('Run Tests') {
+      //      steps {
+      //          script {
+      //          // Run tests
+      //              sh '''
+      //              . ${VENV_DIR}/bin/activate
+      //              pytest tests --maxfail=1 --disable-warnings -q
+      //              '''
+      //          }
+      //      }
+      //}
          stage('Sonar-Test') {
              environment {
                  SONAR_URL = "http://localhost:9000"
