@@ -1,5 +1,10 @@
 pipeline {
     agent any
+     environment {
+        VENV_DIR = 'venv'  // Define virtual environment directory
+        SONAR_URL = "http://localhost:9000"
+        DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
+    }
     stages {
         stage('checkout') {
             steps {
