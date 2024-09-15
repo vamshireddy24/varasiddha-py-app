@@ -31,7 +31,7 @@ pipeline {
                 // Run tests
                     sh '''
                     . ${VENV_DIR}/bin/activate
-                    pytest --maxfail=1 --disable-warnings -q
+                    pytest tests --maxfail=1 --disable-warnings -q
                     '''
                 }
             }
