@@ -1,0 +1,147 @@
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+   /* background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;*/
+    text-align: center;
+}
+
+header, nav, main, footer {
+    padding: 20px;
+}
+
+#datetime div {
+    top: 1px;
+    text-align: right;
+    right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 5px;
+}
+header {
+    background-color: #f4b847;
+    color: rgba(61, 65, 63, 0.97);
+    text-align: center;
+    top: 10px;
+    margin-bottom: -20px; /* Change the margin value as needed */
+}
+/*h1 {
+    background-color: #6a1b9a;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}*/
+
+nav  {
+    list-style: circle;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(9, 8, 8, 0.301);
+    padding: 5px;
+}
+
+nav a {
+    /*margin: 10px;*/
+    text-decoration: coral;
+    
+    font-weight: bold;
+    padding: 5px 30px;
+}
+
+
+.intro {
+    text-align: center;
+    margin-top: 5px;
+}
+h2,p {
+    font-size: 100%;
+}
+
+.featured-content {
+    text-align: left;
+    margin-top: 5px;
+}
+
+
+/*#About {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}*/
+
+form input, form select, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/*ul li {
+    background: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}*/
+
+footer {
+    text-align: center;
+    bottom: 1px;
+    background-color: #333;
+    color: white;
+    padding: 1px;
+}
+
+
+/* Unique styles for about.html */
+
+#About {
+    padding: 20px;
+    background-color: #b10707;
+}
+#About h1 {
+    margin: 10px;
+    font-size: medium;
+}
+
+#About h2 {
+    margin-top: 0;
+    text-align: left;
+}
+
+#About ul {
+    list-style-type: decimal-leading-zero;
+    text-align: left;
+    padding: 0;
+    
+}
+
+#About li {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#About li a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+#About li a:hover {
+    text-decoration: underline;
+}

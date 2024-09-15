@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRI VARASIDHA LINGESHWARA DEVASTHANAM</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+    <title>SRI VARASIDHA LINGESHWARA DEVASTHANAM 
+        శ్రీ వరసిద్ధ లింగేశ్వర దేవస్థానము</title>
+</head>
+<body>
+    <header>
+        <img src="{% static 'varasidha/images/header-image.jpg' %}" id="header-image">
+        <h1>SRI VARASIDHA LINGESHWARA DEVASTHANAM</h1>
+        <h1> శ్రీ వరసిద్ధ లింగేశ్వర దేవస్థానము</h1>
+    </header>
+    <div id="datetime">
+        {{ current_datetime|date:"Y-m-d H:i:s" }}
+    </div>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'donations' %}">Donations</a>
+        <a href="{% url 'events' %}">Events</a>
+        <a href="{% url 'dharshana' %}">Dharshana</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+    <section class="intro">
+        <h2>Welcome to SRI VARASIDHA LINGESHWARA DEVASTHANAM, GOTLAMITTA</h2>
+        <h2>గొట్లమిట్ట శ్రీ వరసిద్ధి లింగేశ్వర దేవస్థానానికి స్వాగతం-సుస్వాగతం</h2>
+        <p>Experience spiritual serenity and tranquility in our sacred space.</p>
+    </section>
+
+    <section class="featured-content">
+        <h3>Featured Events</h3>
+        <ul>
+            <li>
+                <img src="{% static '/images/event1.jpg' %}" alt="Event 1">
+                <h4>Event 1 Title</h4>
+                <p>Date: January 15, 2024</p>
+                <p>Description: </p>
+            </li>
+            <li>
+                <img src="{% static '/images/event2.jpg' %}" alt="Event 2">
+                <h4>Event 2 Title</h4>
+                <p>Date: February 20, 2024</p>
+                <p>Description: </p>
+            </li>
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2024 SRI VARASIDHA LINGESHWARA DEVASTHANAM. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>

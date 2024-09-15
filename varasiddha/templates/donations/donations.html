@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Donations</title>
+    <a href="{% static '/donations.pdf' %}" target="_blank">Download Donation Information PDF</a>
+</head>
+<body>
+    <h1>Donations</h1>
+    <form method="get">
+        <input type="text" name="filter" placeholder="Search by name">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for donation in donations %}
+        <li>{{ donation.name }} - {{ donation.amount }} on {{ donation.date }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}">Back to Home</a>
+</body>
+</html>

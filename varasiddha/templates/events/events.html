@@ -1,0 +1,29 @@
+{% load static %}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Events</title>
+</head>
+<body>
+    <h1>Events</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Event Name">
+        <input type="date" name="date">
+        <select name="category">
+            <option value="program">Program</option>
+            <option value="festival">Festival</option>
+        </select>
+        <button type="submit">Add Event</button>
+    </form>
+    <ul>
+        {% for event in events %}
+        <li>{{ event.name }} - {{ event.date }} - {{ event.get_category_display }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}">Back to Home</a>
+</body>
+</html>
