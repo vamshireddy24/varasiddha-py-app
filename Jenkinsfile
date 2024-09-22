@@ -4,6 +4,7 @@ pipeline {
         VENV_DIR = 'venv'  // Define virtual environment directory
         SONAR_URL = "http://localhost:9000"
         SONAR_PROJECT_KEY = "varasiddha-py-app"  // Define your SonarQube project key
+        SONAR_SCANNER_HOME = '/home/ubuntu/sonar-scanner'
         DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
     }
     stages {
@@ -43,10 +44,10 @@ pipeline {
                     steps {
                         script {
                             withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-                              def scannerHome = tool 'SonarScanner'  // Ensure this matches the name in Global Tool Configuration
+                              //def scannerHome = tool 'SonarScanner'  // Ensure this matches the name in Global Tool Configuration
                                 sh '''
                                 . ${VENV_DIR}/bin/activate
-                                ${scannerHome}/bin/sonar-scanner \
+                                ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
                                 -Dsonar.sources=. \
                                 -Dsonar.host.url=${SONAR_URL} \
@@ -67,7 +68,7 @@ pipeline {
                 script {
                     sh 'sudo docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
-                    docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                        docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
                         dockerImage.push()
                     }
                 }
