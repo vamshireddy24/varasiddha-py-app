@@ -1,22 +1,22 @@
 pipeline {
     agent any
-     environment {
+    environment {
         VENV_DIR = 'venv'  // Define virtual environment directory
         SONAR_URL = "http://localhost:9000"
         SONAR_PROJECT_KEY = "varasiddha-py-app"  // Define your SonarQube project key
         DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
     }
     stages {
-        stage('checkout') {
+        stage('Checkout') {
             steps {
-                sh 'echo passed'
-                 git branch: 'main', url: "https://github.com/vamshireddy24/varasiddha-py-app.git"
+                echo 'Checking out code...'
+                git branch: 'main', url: "https://github.com/vamshireddy24/varasiddha-py-app.git"
             }
         }
         stage('Install Dependencies') {
             steps {
                 script {
-                // Install Python dependencies
+                    // Install Python dependencies
                     sh '''
                     python3 -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
@@ -26,57 +26,39 @@ pipeline {
                 }
             }
         }
-      //  stage('Run Tests') {
-      //      steps {
-      //          script {
-      //          // Run tests
-      //              sh '''
-      //              . ${VENV_DIR}/bin/activate
-      //              pytest tests --maxfail=1 --disable-warnings -q
-      //              '''
-      //          }
-      //      }
-      //}
-         stage('Run Tests') {
+        stage('Run Tests and SonarQube Analysis') {
             parallel {
-                environment {
-                    VENV_DIR = 'venv'  // Define virtual environment directory
-                    SONAR_URL = "http://localhost:9000"
-                    SONAR_PROJECT_KEY = "varasiddha-py-app"  // Define your SonarQube project key
-                    DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
-                }
-                  stage('SonarQube Analysis') {
-                        def scannerHome = tool 'SonarScanner';
-                            withSonarQubeEnv() {
-                            sh "${scannerHome}/bin/sonar-scanner"
-                            }
+                stage('Run Tests') {
+                    steps {
+                        script {
+                            // Run tests
+                            sh '''
+                            . ${VENV_DIR}/bin/activate
+                            pytest tests --maxfail=1 --disable-warnings -q
+                            '''
+                        }
                     }
-                    stage('Sonar-Test') {
-                             environment {
-                             SONAR_URL = "http://localhost:9000"
-                             }
-                        steps {
-                            script {
-                                withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-                                // Run SonarQube Scanner
+                }
+                stage('SonarQube Analysis') {
+                    steps {
+                        script {
+                            withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                                 sh '''
-                                    . ${VENV_DIR}/bin/activate
-                                    sonar-scanner \
-                                    -Dsonar.projectKey=varasiddha-py-app \
-                                    -Dsonar.sources=. \
-                                    -Dsonar.host.url=${SONAR_URL} \
-                                    -Dsonar.login=${SONAR_AUTH_TOKEN}
-                                    -Dsonar.projectKey=${SONAR_PROJECT_KEY}
-                                    '''
-                                }
+                                . ${VENV_DIR}/bin/activate
+                                sonar-scanner \
+                                -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=${SONAR_URL} \
+                                -Dsonar.login=${SONAR_AUTH_TOKEN}
+                                '''
                             }
                         }
                     }
                 }
-         }
+            }
+        }
         stage('Build and Push Docker Image') {
             environment {
-                DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
                 REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
             steps {
