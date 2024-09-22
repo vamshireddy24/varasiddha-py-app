@@ -45,6 +45,7 @@ pipeline {
                             withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                               def scannerHome = tool 'SonarScanner'  // Ensure this matches the name in Global Tool Configuration
                                 sh '''
+                                . ${VENV_DIR}/bin/activate
                                 /home/ubuntu/sonar-scanner/bin/sonar-scanner \
                                 -Dsonar.projectKey=varasiddha-py-app \
                                 -Dsonar.sources=. \
