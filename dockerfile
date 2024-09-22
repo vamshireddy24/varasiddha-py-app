@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 
 # Set environment variables for Python
-ENV VARASIDDHA
+#ENV VARASIDDHA
 
 # Set the working directory in the container
 WORKDIR /app
