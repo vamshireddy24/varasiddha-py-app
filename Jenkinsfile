@@ -37,6 +37,13 @@ pipeline {
       //          }
       //      }
       //}
+        
+          stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner';
+                withSonarQubeEnv() {
+                sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
          stage('Sonar-Test') {
              environment {
                  SONAR_URL = "http://localhost:9000"
@@ -48,7 +55,7 @@ pipeline {
                         sh '''
                         . ${VENV_DIR}/bin/activate
                         sonar-scanner \
-                          -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                          -Dsonar.projectKey=varasiddha-py-app \
                           -Dsonar.sources=. \
                           -Dsonar.host.url=${SONAR_URL} \
                           -Dsonar.login=${SONAR_AUTH_TOKEN}
