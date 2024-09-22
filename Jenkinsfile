@@ -37,7 +37,7 @@ pipeline {
       //          }
       //      }
       //}
-        
+        parallel {
           stage('SonarQube Analysis') {
             def scannerHome = tool 'SonarScanner';
                 withSonarQubeEnv() {
@@ -64,6 +64,7 @@ pipeline {
                     }
                 }
             }
+        }
         }
         stage('Build and Push Docker Image') {
             environment {
