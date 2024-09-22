@@ -46,7 +46,12 @@ pipeline {
                               def scannerHome = tool 'SonarScanner'  // Ensure this matches the name in Global Tool Configuration
                                 sh '''
                                 . ${VENV_DIR}/bin/activate
-                                ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=varasiddha-py-app -Dsonar.sources=. -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}
+                                sonar-scanner \
+                                -Dsonar.projectKey=varasiddha-py-app \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=http://localhost:9000 \
+                                -Dsonar.token=sqa_6f1ea7ab0198315addca93b7ead1fb40385ac3f3
+                                // ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=varasiddha-py-app -Dsonar.sources=. -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}
                                 '''
                             }
                         }
