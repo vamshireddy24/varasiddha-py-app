@@ -3,6 +3,7 @@ pipeline {
      environment {
         VENV_DIR = 'venv'  // Define virtual environment directory
         SONAR_URL = "http://localhost:9000"
+        SONAR_PROJECT_KEY = "varasiddha-py-app"  // Define your SonarQube project key
         DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
     }
     stages {
