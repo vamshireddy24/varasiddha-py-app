@@ -5,7 +5,7 @@ pipeline {
         SONAR_URL = "http://localhost:9000"
         SONAR_PROJECT_KEY = "varasiddha-py-app"  // Define your SonarQube project key
         SONAR_SCANNER_HOME = '/home/ubuntu/sonar-scanner'
-        DOCKER_IMAGE = "kubevamshi/varasiddha-py:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "kubevamshi/varasiddha-py-app:${BUILD_NUMBER}"
     }
     stages {
         stage('Checkout') {
