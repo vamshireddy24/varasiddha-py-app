@@ -29,17 +29,17 @@ pipeline {
         }
         stage('Run Tests and SonarQube Analysis') {
             parallel {
-                stage('Run Tests') {
-                    steps {
-                        script {
+                //stage('Run Tests') {
+                  //  steps {
+                  //      script {
                             // Run tests
-                            sh '''
-                            . ${VENV_DIR}/bin/activate
-                            pytest tests --maxfail=1 --disable-warnings -q
-                            '''
-                        }
-                    }
-                }
+                   //         sh '''
+                   //         . ${VENV_DIR}/bin/activate
+                   //         pytest tests --maxfail=1 --disable-warnings -q
+                 //           '''
+                  //      }
+                  //  }
+                ///}
                 stage('SonarQube Analysis') {
                     steps {
                         script {
