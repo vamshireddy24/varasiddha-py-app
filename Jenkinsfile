@@ -46,7 +46,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                         // Run SonarQube Scanner
                         sh '''
-                        docker run --rm \
+                        sudo docker run --rm \
                           -e SONAR_HOST_URL=${SONAR_URL} \
                           -e SONAR_LOGIN=${SONAR_AUTH_TOKEN} \
                           -v $(pwd):/usr/src \
@@ -66,7 +66,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'docker build -t ${DOCKER_IMAGE} .'
+                    sh 'sudo docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
                     docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
                         dockerImage.push()
