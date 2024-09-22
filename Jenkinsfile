@@ -46,14 +46,13 @@ pipeline {
                     withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                         // Run SonarQube Scanner
                         sh '''
-                        sudo docker run --rm \
-                          -e SONAR_HOST_URL=${SONAR_URL} \
-                          -e SONAR_LOGIN=${SONAR_AUTH_TOKEN} \
-                          -v $(pwd):/usr/src \
-                          sonarsource/sonar-scanner-cli \
-                          sonar-scanner \
+                        . ${VENV_DIR}/bin/activate
+                        sonar-scanner \
                           -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                          -Dsonar.sources=.
+                          -Dsonar.sources=. \
+                          -Dsonar.host.url=${SONAR_URL} \
+                          -Dsonar.login=${SONAR_AUTH_TOKEN}
+                          -Dsonar.projectKey=${SONAR_PROJECT_KEY}
                         '''
                     }
                 }
