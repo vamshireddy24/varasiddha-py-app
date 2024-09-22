@@ -47,9 +47,9 @@ pipeline {
                               //def scannerHome = tool 'SonarScanner'  // Ensure this matches the name in Global Tool Configuration
                                 sh '''
                                 . ${VENV_DIR}/bin/activate
-                                sudo ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                                ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                                -Dsonar.sources=. \
+                                -Dsonar.sources=/var/lib/jenkins/workspace/varasiddha-py-app/varasiddha \
                                 -Dsonar.host.url=${SONAR_URL} \
                                 -Dsonar.login=${SONAR_AUTH_TOKEN}
                                 '''
