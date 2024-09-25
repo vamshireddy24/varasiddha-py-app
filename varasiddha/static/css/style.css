@@ -5,10 +5,6 @@ body, h1, h2, p {
 
 body {
     font-family: Arial, sans-serif;
-   /* background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;*/
     text-align: center;
 }
 
@@ -30,14 +26,8 @@ header {
     color: rgba(61, 65, 63, 0.97);
     text-align: center;
     top: 10px;
-    margin-bottom: -20px; /* Change the margin value as needed */
+    margin-bottom: -20px;
 }
-/*h1 {
-    background-color: #6a1b9a;
-    color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-}*/
 
 nav  {
     list-style: circle;
@@ -48,7 +38,6 @@ nav  {
 }
 
 nav a {
-    /*margin: 10px;*/
     text-decoration: coral;
     
     font-weight: bold;
@@ -69,15 +58,6 @@ h2,p {
     margin-top: 5px;
 }
 
-
-/*#About {
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}*/
-
 form input, form select, form button {
     display: block;
     width: 100%;
@@ -92,14 +72,6 @@ ul {
     padding: 0;
 }
 
-/*ul li {
-    background: #fff;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-}*/
-
 footer {
     text-align: center;
     bottom: 1px;
@@ -107,9 +79,6 @@ footer {
     color: white;
     padding: 1px;
 }
-
-
-/* Unique styles for about.html */
 
 #About {
     padding: 20px;
