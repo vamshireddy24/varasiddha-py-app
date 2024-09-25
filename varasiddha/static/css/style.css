@@ -115,12 +115,12 @@ footer {
     padding: 20px;
     background-color: #b10707;
 }
-#About h1 {
+#About h3 {
     margin: 10px;
     font-size: medium;
 }
 
-#About h2 {
+#About h4 {
     margin-top: 0;
     text-align: left;
 }
