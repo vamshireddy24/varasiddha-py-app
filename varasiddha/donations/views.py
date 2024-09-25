@@ -3,14 +3,19 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from .models import Donation
-from django.http import FileResponse, HttpResponseForbidden
+from django.http import FileResponse, HttpResponseForbidden, HttpResponseNotAllowed
 import os
 from django.conf import settings
 
 def download_donation_info(request):
+     if request.method != 'GET':
+        return HttpResponseNotAllowed(["GET"])  # Return 405 Method Not Allowed
+
     if not request.user.is_authenticated:
         return HttpResponseForbidden("You must be logged in to download this file.")
     file_path = os.path.join(settings.STATIC_ROOT, 'pdfs', 'donations.pdf')
+    if not os.path.exists(file_path):
+        return HttpResponseForbidden("Requested file not found.")
     return FileResponse(open(file_path, 'rb'), content_type='application/pdf')
 def donations(request):
     if request.method == 'POST':
